@@ -1,0 +1,31 @@
+{
+  "private": true,
+  "author": "浩会海 <157855644@qq.com>",
+  "scripts": {
+    "build": "umi build",
+    "dev": "umi dev",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "postinstall": "umi setup",
+    "setup": "umi setup",
+    "start": "npm run dev"
+  },
+  "dependencies": {
+    "@formily/antd-mobile": "^1.0.0-beta.3",
+    "@formily/core": "^2.3.7",
+    "@formily/react": "^2.3.7",
+    "antd-mobile": "^5.39.0",
+    "axios": "^1.10.0",
+    "postcss-px-to-viewport": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.33",
+    "@types/react-dom": "^18.0.11",
+    "@umijs/max": "^4.1.1",
+    "@umijs/plugins": "^4.3.12",
+    "ignore-loader": "^0.1.2",
+    "prettier": "^2.8.8",
+    "tailwindcss": "^3",
+    "typescript": "^5.0.3"
+  }
+}

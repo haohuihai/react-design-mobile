@@ -1,0 +1,11 @@
+# 忽略目录
+node_modules/
+build/
+dist/
+coverage/
+
+# 忽略文件
+*.min.js
+*.min.css
+package-lock.json
+yarn.lock
