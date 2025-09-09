@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 // @ts-ignore
 import '@/assets/style/form.less';
-import Components from '@/components/formily-components/components';
+import Components from '@/components/formily-components';
 import { useParams } from 'umi';
 import './index.less';
 // 单行文本， 多行文本，数值，评分，单选，复选，日期，日期区间，附件，下拉单选，下拉复选，级联选择，定位，
