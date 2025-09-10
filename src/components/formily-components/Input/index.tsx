@@ -12,7 +12,7 @@ const BaseInput: React.FC<InputProps> = ({ value, onChange, ...restProps }) => {
    }) 
   }
 
-  return <Input placeholder='请输入' value={value as any} clearable type='' onChange={handleChange} {...restProps} />
+  return <Input placeholder='请输入' value={value.value as any} clearable type='' onChange={handleChange} {...restProps} />
   
 };
 export const FormilyInput = connect(

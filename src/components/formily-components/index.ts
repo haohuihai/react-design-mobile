@@ -38,7 +38,7 @@ export default {
   FormLayout,
 
   // Input 系列
-  TextInput: FormilyInput,
+  Input: FormilyInput,
   TextArea: FormilyTextArea,
   NumberInput: FormilyNumberInput,
   MoneyInput: FormilyMoneyInput,
