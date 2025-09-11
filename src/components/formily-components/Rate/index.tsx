@@ -1,18 +1,43 @@
-import { Input } from 'antd-mobile';
-import { connect, mapProps } from '@formily/react';
-interface InputProps {
-  value: string | number | undefined;
-  onChange: () => void;
+import React from 'react'
+import { Rate } from 'antd-mobile'
+import { connect, mapProps } from '@formily/react'
+
+interface RateValue {
+  type: 'Rate'
+  value: number
 }
-const BaseInput: React.FC<InputProps> = ({ value, onChange, ...restProps }) => (
-  <Input placeholder='请输入' value={value} clearable type='' onChange={onChange} {...restProps} />
-);
+
+interface FormilyRateProps {
+  value?: RateValue
+  onChange?: (val: RateValue) => void
+  allowHalf?: boolean
+  count?: number
+}
+
+const BaseRate: React.FC<FormilyRateProps> = ({ value, onChange, ...rest }) => {
+  const currentValue = value?.value || 0
+
+  return (
+    <Rate
+      value={currentValue}
+      onChange={(val) => {
+        onChange?.({ type: 'Rate', value: val })
+      }}
+      {...rest}
+    />
+  )
+}
+
 export const FormilyRate = connect(
-  BaseInput,
-  mapProps({}, (props, field) => {
-    return {
-      value: field.value || '',
-      onChange: field.setValue,
-    };
-  })
-);
+  BaseRate,
+  mapProps(
+    {
+      value: true,
+      disabled: true,
+    },
+    (props, field) => ({
+      value: field.data ?? { type: 'Rate', value: 0 },
+      onChange: field.setData,
+    })
+  )
+)

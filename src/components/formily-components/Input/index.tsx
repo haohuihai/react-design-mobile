@@ -1,7 +1,7 @@
 import { Input } from 'antd-mobile';
 import { connect, mapProps } from '@formily/react';
 interface InputProps {
-  value: string; 
+  value: {value: string, type: string}; 
   onChange: (val: {value: string, type: string}) => void;
 }
 const BaseInput: React.FC<InputProps> = ({ value, onChange, ...restProps }) => {

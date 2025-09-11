@@ -1,18 +1,38 @@
-import { Input } from 'antd-mobile';
-import { connect, mapProps } from '@formily/react';
-interface InputProps {
-  value: string | number | undefined;
-  onChange: () => void;
+import React from 'react'
+import { Switch } from 'antd-mobile'
+import { connect, mapProps } from '@formily/react'
+
+interface SwitchProps {
+  value?: {value: boolean, type: string}
+  onChange: (val: {value: boolean, type: string}) => void;
+  disabled?: boolean
 }
-const BaseInput: React.FC<InputProps> = ({ value, onChange, ...restProps }) => (
-  <Input placeholder='请输入' value={value} clearable type='' onChange={onChange} {...restProps} />
-);
+
+const BaseSwitch: React.FC<SwitchProps> = ({ value, onChange, ...restProps }) => {
+  const handleChange = (value: boolean) => {
+   onChange({
+    value: value,
+    type: 'Input'
+   }) 
+  }
+  return (
+    <Switch
+      checked={value?.value}
+      onChange={handleChange}
+      {...restProps}
+    />
+  )
+}
+
 export const FormilySwitch = connect(
-  BaseInput,
-  mapProps({}, (props, field) => {
-    return {
-      value: field.value || '',
-      onChange: field.setValue,
-    };
-  })
-);
+  BaseSwitch,
+  mapProps(
+    {
+      disabled: true,
+    },
+    (props, field) => ({
+      value: field.data ?? {type: 'Switch', value: false}, // 默认 false
+      onChange: field.setData,
+    })
+  )
+)

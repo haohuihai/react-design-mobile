@@ -1,18 +1,43 @@
-import { Input } from 'antd-mobile';
-import { connect, mapProps } from '@formily/react';
-interface InputProps {
-  value: string | number | undefined;
-  onChange: () => void;
+import React from 'react'
+import { TextArea } from 'antd-mobile'
+import { connect, mapProps } from '@formily/react'
+
+interface TextAreaProps {
+  value?: { value: string, type: string }
+  onChange: (val: {value: string, type: string}) => void
+  placeholder?: string
+  maxLength?: number
+  autoSize?: boolean | { minRows?: number; maxRows?: number }
+  disabled?: boolean
 }
-const BaseInput: React.FC<InputProps> = ({ value, onChange, ...restProps }) => (
-  <Input placeholder='请输入' value={value} clearable type='' onChange={onChange} {...restProps} />
-);
+
+const BaseTextArea: React.FC<TextAreaProps> = ({ value, onChange, ...restProps }) => {
+   const handleChange = (value: string) => {
+   onChange({
+    value: value,
+    type: 'TextArea'
+   }) 
+  }
+  return (
+    <TextArea
+      value={value?.value}
+      onChange={handleChange}
+      placeholder="请输入内容"
+      {...restProps}
+    />
+  )
+}
+
 export const FormilyTextArea = connect(
-  BaseInput,
-  mapProps({}, (props, field) => {
-    return {
-      value: field.value || '',
-      onChange: field.setValue,
-    };
-  })
-);
+  BaseTextArea,
+  mapProps(
+    {
+      value: true,
+      disabled: true,
+    },
+    (props, field) => ({
+      value: field.data ?? {value: '', type: 'TextArea'},
+      onChange: field.setData,
+    })
+  )
+)

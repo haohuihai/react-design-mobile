@@ -37,39 +37,44 @@ export default {
   FormGrid,
   FormLayout,
 
-  // Input 系列
+  // Input 系列  1
   Input: FormilyInput,
   TextArea: FormilyTextArea,
   NumberInput: FormilyNumberInput,
   MoneyInput: FormilyMoneyInput,
 
-  // 选择器
+  // 选择器 1
   Checkbox: {
     Group: FormilyCheckboxGroup,
   },
+  // 1
   Radio: {
     Group: FormilyRadioGroup,
   },
+  // 1
   Select: {
     Single: FormilySelectSingle,
     Multiple: FormilySelectMultiple,
   },
 
-  // 日期时间
+  // 日期时间 1
   DatePicker: FormilyDatePicker,
   DateRangePicker: FormilyDateRangePicker,
 
+  // 1
   TimePicker: FormilyTimePicker,
   TimeRangePicker: FormilyTimeRangePicker,
 
   // 业务控件
   LocationPicker: FormilyLocationPicker,
+  // 1
   CascadePicker,
+  // 上传组件 1
   Upload: FormilyUpload,
   ImageUpload: FormilyImageUpload,
   Signature: FormilySignature,
 
-  // 其他
+  // 其他 1
   Switch: FormilySwitch,
   Rate: FormilyRate,
 
