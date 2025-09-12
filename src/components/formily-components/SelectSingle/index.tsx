@@ -1,37 +1,47 @@
-import React, { useState } from 'react'
-import { Input, Popup, List, Radio } from 'antd-mobile'
-import { connect, mapProps } from '@formily/react'
+import { connect, mapProps } from '@formily/react';
+import { Input, List, Popup, Radio } from 'antd-mobile';
+import React, { useState } from 'react';
 
 interface Option {
-  label: string
-  value: string | number
+  label: string;
+  value: string | number;
 }
 
 interface SelectSingleProps {
-  value?: { label: string; value: string | number }
-  onChange?: (val: { label: string; value: string | number }) => void
-  options?: Option[]
-  placeholder?: string
+  value?: { label: string; value: string | number };
+  onChange?: (val: { label: string; value: string | number }) => void;
+  options?: Option[];
+  placeholder?: string;
 }
 
-const SelectSingle: React.FC<SelectSingleProps> = ({ value, onChange, options = [], placeholder }) => {
-  const [visible, setVisible] = useState(false)
+const SelectSingle: React.FC<SelectSingleProps> = ({
+  value,
+  onChange,
+  options = [],
+  placeholder,
+}) => {
+  const [visible, setVisible] = useState(false);
 
-  const selectedLabel = value?.label || ''
-
+  const selectedLabel = value?.label || '';
+  console.log('selectedLabel', visible);
   return (
     <>
-      <Input
-        readOnly
-        placeholder={placeholder || '请选择'}
-        value={selectedLabel}
-        onClick={() => setVisible(true)}
-      />
-
+      <div
+        onClick={() => {
+          console.log('click');
+          setVisible(true);
+        }}
+      >
+        <Input
+          readOnly
+          placeholder={placeholder || '请选择123'}
+          value={selectedLabel}
+        />
+      </div>
       <Popup
         visible={visible}
         onMaskClick={() => setVisible(false)}
-        position="bottom"
+        position='bottom'
         bodyStyle={{ height: '40vh' }}
       >
         <List>
@@ -39,8 +49,8 @@ const SelectSingle: React.FC<SelectSingleProps> = ({ value, onChange, options = 
             <List.Item
               key={opt.value}
               onClick={() => {
-                onChange?.(opt) // 直接返回 {label, value}
-                setVisible(false)
+                onChange?.(opt); // 直接返回 {label, value}
+                setVisible(false);
               }}
               arrow={false}
             >
@@ -50,16 +60,13 @@ const SelectSingle: React.FC<SelectSingleProps> = ({ value, onChange, options = 
         </List>
       </Popup>
     </>
-  )
-}
+  );
+};
 
 export const FormilySelectSingle = connect(
   SelectSingle,
-  mapProps(
-    { options: true },
-    (props, field) => ({
-      value: field.data, // {label, value}
-      onChange: field.setData,
-    })
-  )
-)
+  mapProps({ options: true }, (props, field) => ({
+    value: field.data, // {label, value}
+    onChange: field.setData,
+  }))
+);
